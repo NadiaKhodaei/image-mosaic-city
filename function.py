@@ -8,7 +8,7 @@ from tqdm.notebook import tqdm
 
 class Panaroma:
 
-    def image_stitch(self, images, lowe_ratio=0.75, max_Threshold=0.2,match_status=False):
+    def image_stitch(self, images, lowe_ratio=0.75, max_Threshold=0.9,match_status=False):
 
         #detect the features and keypoints from SIFT
         (imageB, imageA) = images
@@ -28,8 +28,8 @@ class Panaroma:
         blender = Blender()
         
         
-        # result_image = blender.linearBlending([imageB, result_image])
-        # result_image = self.removeBlackBorder(result_image)
+        result_image = blender.linearBlending([imageB, result_image])
+        result_image = self.removeBlackBorder(result_image)
         # result_image = result_image[y:y+h, x:x+w]
         # check to see if the keypoint matches should be visualized
         if match_status:
@@ -192,7 +192,7 @@ class Panaroma:
         ax.plot(matches[:, 2] + offset, matches[:, 3], 'xr')
         
         ax.plot([matches[:, 0], matches[:, 2] + offset], [matches[:, 1], matches[:, 3]],
-                'r', linewidth=0.3)
+                'r', linewidth=0.6)
 
         # plt.show()
     
